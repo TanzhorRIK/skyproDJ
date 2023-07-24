@@ -12,8 +12,8 @@ class Product(models.Model):
     creation_date = models.DateField(auto_now_add=True, verbose_name="дата создания", **NULLABLE)
     date_of_change = models.DateField(auto_now=True, verbose_name="дата последнего изменения")
 
-    def __str__(self):
-        return f'Название: {self.name}\n{self.description}'
+    # def __str__(self):
+    #     return f'Название: {self.name}\n{self.description}'
 
     class Meta:
         verbose_name = 'товар'
@@ -24,8 +24,8 @@ class Category(models.Model):
     name = models.CharField(max_length=140, verbose_name="имя")
     description = models.TextField(verbose_name="описание")
 
-    def __str__(self):
-        return f'Категория: {self.name}\n{self.description}'
+    # def __str__(self):
+    #     return f'{self.id} {self.name}'
 
     class Meta:
         verbose_name = 'категория'
