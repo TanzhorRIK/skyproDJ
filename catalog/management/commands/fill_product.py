@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
         products_list = [
             {'name': 'Китай', 'description': 'БУ',
-             'preview': 'media/photos/2023/07/25/i.webp', 'category': object_1, 'price': 1000.0},
+             'preview': 'photos/2023/07/25/i.webp', 'category': object_1, 'price': 1000.0},
         ]
 
         Product.objects.all().delete()
