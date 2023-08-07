@@ -1,7 +1,12 @@
 from django.shortcuts import render
+from catalog.models import Product
+
+CARDS = Product.objects.all()
+
 
 def index(request):
-    return render(request, 'main/index.html')
+    return render(request, 'main/index.html', {'cards': CARDS})
+
 
 def contacts(request):
     if request.method == "POST":
@@ -11,3 +16,7 @@ def contacts(request):
         print(name, phone, message)
 
     return render(request, 'main/contacts.html')
+
+
+def card(request):
+    return render(request, 'main/card.html', {'cards': CARDS})

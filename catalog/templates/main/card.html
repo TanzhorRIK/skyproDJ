@@ -1,0 +1,43 @@
+{% extends "main/base.html" %}
+{% load catalog_tags %}
+{% block content %}
+    <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-dark table-sm">
+                        <tr>
+                            <td>Название продукта</td>
+                            <td>{{ cards.name }} </td>
+                        </tr>
+                        <tr>
+                            <td>Описание продукта</td>
+                            <td>{{ cards.description }}</td>
+                        </tr>
+                        <tr>
+                            <td>Категория</td>
+                            <td>{{ cards.category }}</td>
+                        </tr>
+                        <tr>
+                            <td>Цена продукта:</td>
+                            <td>{{ cards.price }}</td>
+                        </tr>
+                        <tr>
+                            <td>Дата добавления:</td>
+                            <td>{{ cards.creation_date}}</td>
+                        </tr>
+                        <tr>
+                            <td>Дата обновления:</td>
+                                <td>{{ object.date_of_change  }}</td>
+                        </tr>
+                        <tr>
+                            <td>Изображение:</td>
+                                <td><img src="{% mediapath cards.preview %}"/></td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="card-footer">
+                </div>
+            </div>
+        </div>
+{% endblock %}
