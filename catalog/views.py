@@ -5,6 +5,7 @@ CARDS = Product.objects.all()
 
 
 def index(request):
+    cards = Product.objects.all()
     return render(request, 'main/index.html', {'cards': CARDS})
 
 
@@ -18,5 +19,6 @@ def contacts(request):
     return render(request, 'main/contacts.html')
 
 
-def card(request):
-    return render(request, 'main/card.html', {'cards': CARDS})
+def card(request, pk):
+    card = Product.objects.get(pk=pk)
+    return render(request, 'main/card.html', {'card': card,  'title': card.name})

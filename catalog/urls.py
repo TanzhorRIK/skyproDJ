@@ -7,7 +7,7 @@ from config import settings
 urlpatterns = [
     path('', index, name="home"),
     path('contacts/', contacts, name="contacts"),
-    path('card/', card, name="card")
+    path('card/<int:pk>', card, name="card")
 ]
 
 if settings.DEBUG is True:
