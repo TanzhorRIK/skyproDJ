@@ -31,6 +31,9 @@
                             <img src="{% mediapath item.preview %}" width="155" height="120"/>
                             </p>
                             <button type="button" class="btn btn-success">Купить</button>
+                            <form action="{% id_path item.id%}" target="_blank">
+                                <button class="btn">View</button>
+                            </form>
                         </div>
 
                     </div>
