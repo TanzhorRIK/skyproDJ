@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% block content %}
+    <div class="container">
+        <h4 class="bg-info">Заголовок: {{ object.name }}</h4>
+        <br>
+        <h4 class="bg-info">Контент: {{ object.content }}</h4>
+        <br>
+        <h4 class="bg-info">Количество просмотров: {{ object.count_views }}</h4>
+
+        <br>
+        <h4 class="bg-info">Слаг: {{ object.slug }}</h4>
+
+        <br>
+        <h4 class="bg-info">Добавлено: {{ object.creation_date }}</h4>
+
+        <br>
+        <h4 class="bg-info">Опубликовано: {{ object.publication_attribute }}</h4>
+
+        {% if object.preview  %}
+
+            <img src="{{ object.preview.url }}" alt="img">
+        {% endif %}
+
+    </div>
+
+
+{% endblock %}
