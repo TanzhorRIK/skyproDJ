@@ -5,3 +5,4 @@ tzdata==2023.3
 Pillow
 psycopg2
 ipython
+transliterate
