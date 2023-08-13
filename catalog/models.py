@@ -39,7 +39,7 @@ class Product(models.Model):
 
 class Blog(models.Model):
     name = models.CharField(max_length=140, verbose_name="название")
-    slug = models.CharField(max_length=30, verbose_name='слаг')
+    slug = models.CharField(max_length=30, verbose_name='слаг', unique=True)
     content = models.TextField(verbose_name="содержимое")
     preview = models.ImageField(upload_to="photos/blog/",
                                 verbose_name="изображение", **NULLABLE)
@@ -59,8 +59,21 @@ class Blog(models.Model):
         super().save(*args, **kwargs)
 
     def delete(self, using=None, keep_parents=False):
-        self.is_published = False
+        self.publication_attribute = False
         self.save()
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
+
+class Version(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, **NULLABLE)
+    number = models.IntegerField(verbose_name="Версия", **NULLABLE)
+    name = models.CharField(max_length=100, verbose_name="Имя версии", **NULLABLE)
+    status = models.BooleanField(verbose_name="Статус", **NULLABLE)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'версия'
+        verbose_name_plural = 'версии'
