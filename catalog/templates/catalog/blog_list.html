@@ -1,32 +1,38 @@
-{% extends 'main/base.html' %}
+{% extends 'catalog/base.html' %}
 {%  block title %}
 {{ title }}
 {%  endblock %}
 
 {% block content %}
-        <div class="container">
-    <h1 class="text-dark">Список постов</h1>
+<div class="container">
+            <header>
+            <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+                <h1 class="display-4 fw-normal text-body-emphasis">Список постов</h1>
+                <a class="btn btn-success" href="{% url 'catalog:add_blog' %}">Создать пост</a>
+            </div>
+        </header>
 
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
         {% for object in object_list %}
             {% if object.publication_attribute %}
 
-            <div class="row text-center">
-                <div class="col-3">
-                    <div class="card mb-4 box-shadow">
+            <div class="col">
+                <div class="card mb-5 rounded-3 shadow-sm">
+                    <div class="card-header py-5">
                         <div class="card-header">
                             <h4 class="my-0 font-weight-normal">{{ object.name }}</h4>
                         </div>
                         {% if object.preview %}
 
-                            <img src="{{ object.preview.url }}" alt="image">
+                            <img src="{{ object.preview.url }}" alt="image" width="540" height="480">
                         {% endif %}
                         <div class="card-body">
 
 
-                            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                                <li>- {{ object.content}}</li>
 
-                            </ul>
+                                <p class="card-title pricing-card-title"> {{ object.content}}</p>
+
+
 
                             <a type="button" href="{% url 'catalog:blog' object.slug %}"
                                class="btn btn-lg btn-block btn-outline-primary">Просмотр</a>
@@ -39,9 +45,7 @@
             {% endif %}
 
         {% endfor %}
-
-        <a class="btn-info" href="{% url 'catalog:add_blog' %}">Создать пост</a>
+            </div>
 
   </div>
-</div>
 {%  endblock %}

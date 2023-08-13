@@ -1,4 +1,4 @@
-{% extends "main/base.html" %}
+{% extends "catalog/base.html" %}
 {% load catalog_tags %}
 {% block content %}
 
@@ -7,7 +7,8 @@
         <header>
             <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
                 <h1 class="display-4 fw-normal text-body-emphasis">Главная</h1>
-                <p class="fs-5 text-body-secondary">Вы находитесь на сайте, предназначенном для продажи товаров</p>
+                <a class="btn btn-success" href="{% url 'catalog:add_product' %}">Создать товар</a>
+                <a class="btn btn-primary" href="{% url 'catalog:add_version' %}">Изменить версию</a>
             </div>
         </header>
 
