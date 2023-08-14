@@ -16,5 +16,5 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ("name", "description")
 
 @admin.register(Blog)
-class ProductAdmin(admin.ModelAdmin):
+class BlogAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "slug", "content")

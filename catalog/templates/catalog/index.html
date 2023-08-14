@@ -8,7 +8,6 @@
             <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
                 <h1 class="display-4 fw-normal text-body-emphasis">Главная</h1>
                 <a class="btn btn-success" href="{% url 'catalog:add_product' %}">Создать товар</a>
-                <a class="btn btn-primary" href="{% url 'catalog:add_version' %}">Изменить версию</a>
             </div>
         </header>
 
@@ -34,6 +33,9 @@
                             <button type="button" class="btn btn-success">Купить</button>
                             <form action="{% id_path item.id%}" target="_blank">
                                 <button class="btn">View</button>
+                            </form>
+                            <form action="{% url 'catalog:update_product' item.pk %}" target="_blank">
+                                <button class="btn btn-danger">Изменить</button>
                             </form>
                         </div>
 

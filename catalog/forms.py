@@ -3,9 +3,19 @@ from django import forms
 from django.core.exceptions import ValidationError
 from catalog.models import Product, Blog, Version
 
-EXCLUTION_WORDS = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
-class BlogForm(forms.ModelForm):
+EXCLUTION_WORDS = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево',
+                   'бесплатно', 'обман', 'полиция', 'радар']
 
+
+class StyleFormMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+            field.help_text = 'Some help text for field'
+
+
+class BlogForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Blog
         exclude = ('slug', 'count_views',)
@@ -21,15 +31,8 @@ class BlogForm(forms.ModelForm):
             raise forms.ValidationError("слово запрещено")
         return cleaned_data
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
-            field.help_text = 'Some help text for field'
 
-
-class ProductForm(forms.ModelForm):
-
+class ProductForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Product
         fields = ('name', 'description', 'preview', 'category', 'price')
@@ -52,14 +55,7 @@ class ProductForm(forms.ModelForm):
             field.help_text = 'Some help text for field'
 
 
-class VersionForm(forms.ModelForm):
-
+class VersionForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Version
         fields = "__all__"
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
-            field.help_text = 'Some help text for field'
